@@ -30,7 +30,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/codelex" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../practice" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -64,7 +64,6 @@
       <workItem from="1628773995002" duration="2920000" />
       <workItem from="1628779802631" duration="615000" />
       <workItem from="1628780617905" duration="20000" />
-      <workItem from="1629183919969" duration="1162000" />
     </task>
     <servers />
   </component>
