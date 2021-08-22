@@ -44,7 +44,7 @@ $employees = [
 
 function employeePay(float $basePay, float $hoursWorked): string
 {
-    if ($basePay < 8 || $hoursWorked > 60)
+    if ($basePay < 8 || $hoursWorked > 60 || $hoursWorked < 0)
     {
         return "Error";
     } elseif ($hoursWorked > 40) {
