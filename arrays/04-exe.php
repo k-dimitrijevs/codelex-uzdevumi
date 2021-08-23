@@ -24,7 +24,7 @@ for ($i = 0; $i < 10; $i++) {
 }
 
 $numbersClone = $numbers;
-$numbersClone[count($numbersClone) - 1] = -7;
+$numbers[count($numbers) - 1] = -7;
 
 for ($i = 0; $i < count($numbers); $i++) {
     echo $numbers[$i] . " ";
