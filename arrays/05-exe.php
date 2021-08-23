@@ -39,9 +39,25 @@ $playerO = 'O';
 $currentPlayer = $playerX;
 
 while ($gameInProgress) {
-    $input = explode(" ", readline("'{$currentPlayer}', choose your location (row & column): "));
+    $input = readline("'{$currentPlayer}', choose your location (row & column): ");
+
+    $input = explode(" ", $input);
+
+    if (count($input) !== 2) {
+        echo "Invalid input!" . PHP_EOL;
+        continue;
+    }
+
     [$row, $column] = $input;
-    // TODO: Check for valid input
+    $validInput = [0, 1, 2];
+
+    $row = is_numeric($row) ? (int) $row : $row;
+    $column = is_numeric($column) ? (int) $column : $column;
+
+    if (!in_array($row, $validInput, true) || !in_array($column, $validInput, true)) {
+        echo "Invalid input!" . PHP_EOL;
+        continue;
+    }
 
     if ($isOccupied($row, $column)) {
         echo "This location is already taken!" . PHP_EOL;
