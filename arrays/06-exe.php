@@ -33,6 +33,7 @@ while ($numOfGuesses > 0) {
     // Check if guess is only 1 character long and is a letter
     if (strlen($guess) !== 1 || ctype_alpha($guess) !== true) {
         echo "\nINVALID INPUT\n";
+        continue;
     } else {
         for ($i = 0; $i < count($letters); $i++) {
             if (($guess === $letters[$i])) {
