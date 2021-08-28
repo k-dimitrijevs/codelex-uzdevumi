@@ -1,17 +1,18 @@
 <?php
 
 /**
- * SLOT MACHINE 3x3
+ * SLOT MACHINE 4x3
  *
- *  - likme (10, 20, 40, 80...)
- *           1   2   3   4
- *  - 30 - not valid
+ * Possible winning scenarios:
+ *      Horizontal lines;
+ *      Diagonals:
+ *          A A - -         - - A A
+ *          - - A -         - A - -
+ *          - - - A         A - - -
  *
- *  laimests - horizontali un pa diagonali
- *
- *      AAA  - 5 (likme 20) laimests 5*2 = 10
- *      CBA
- *      DCA
+ *          A - - -         - - - A
+ *          - A - -         - - A -
+ *          - - A A         A A - -
  */
 
 $board = [
