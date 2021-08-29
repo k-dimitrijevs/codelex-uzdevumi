@@ -60,39 +60,20 @@ $k = 2 * $size - 2;
 //    // each row
 //    echo "\n";
 //}
+$forward = "";
+$backward = "";
+
 $backwardsSlash = "\ ";
 
 for ($i = 0; $i < $size; $i++) {
-    if ($i === 1) {
-        for ($j = 0; $j < 48; $j++) {
-            if ($j < 16) {
-                echo "/";
-            } elseif($j > 16 && $j <= 32) {
-                echo str_replace(' ', '', $backwardsSlash);
-            }
+    for ($j = 0; $j < 48; $j++) {
+        if ($j < 16) {
+            $forward = "/";
+            echo $forward;
+        } elseif ($j > 16 && $j <= 32) {
+            $backward = str_replace(' ', '', $backwardsSlash);
+            echo $backward;
         }
     }
     echo PHP_EOL;
 }
-
-/**
- *  for (... )
- * {
- *      for ( ... )
- *      {
- *          SOMETHING LIKE THIS
- *          if ($j < 16)
- *          {
- *              echo "/";
- *          } elseif($j > 16 && $j <= 32)
- *          {
-                jaunaisStrings = str_replace(' ', '', $backwardsSlash);
- *              echo jaunaisStrings
-            }
- *      }
- *
- *      echo NEW LINE
- *      jaunaisStrings = vienai dalai nonemt backslashes un repplacot ar * (Same ar otru dalu)
- * }
- */
-
