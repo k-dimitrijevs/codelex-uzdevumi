@@ -28,38 +28,7 @@
  */
 
 $size = 5;
-$k = 2 * $size - 2;
 
-/** NOT THE RIGHT FIGURE! */
-//for ($i = 0; $i < $size; $i++)
-//{
-//
-//    // inner loop to handle
-//    // number spaces
-//    // values changing acc.
-//    // to requirement
-//    for ($j = 0; $j < $k; $j++)
-//        echo "/";
-//
-//    // decrementing k after
-//    // each loop
-//    $k = $k - 1;
-//
-//    // inner loop to handle
-//    // number of columns
-//    // values changing acc.
-//    // to outer loop
-//    for ($j = 0; $j <= $i; $j++ )
-//    {
-//
-//        // printing stars
-//        echo "*";
-//    }
-//
-//    // ending line after
-//    // each row
-//    echo "\n";
-//}
 $forward = "";
 $backward = "";
 
