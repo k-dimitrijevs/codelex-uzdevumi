@@ -27,22 +27,20 @@
  *       ************************************************
  */
 
-$size = 5;
 
-$forward = "";
-$backward = "";
+function makePyramid(int $size): string {
+    $pyramid = "";
+    $backSlash = "\ ";
+    $backSlash = str_replace(' ', '', $backSlash);
 
-$backwardsSlash = "\ ";
-
-for ($i = 0; $i < $size; $i++) {
-    for ($j = 0; $j < 48; $j++) {
-        if ($j < 16) {
-            $forward = "/";
-            echo $forward;
-        } elseif ($j > 16 && $j <= 32) {
-            $backward = str_replace(' ', '', $backwardsSlash);
-            echo $backward;
-        }
+    for ($times = ($size - 1) * 4; $times >= 0; $times = $times -4) {
+        $pyramid .= str_repeat("/", $times);
+        $pyramid .= str_repeat("*", ($size - 1) * 4 - $times);
+        $pyramid .= str_repeat("*", ($size - 1) * 4 - $times);
+        $pyramid .= str_repeat($backSlash, $times);
+        $pyramid .= PHP_EOL;
     }
-    echo PHP_EOL;
+    return $pyramid;
 }
+
+echo makePyramid(5);
