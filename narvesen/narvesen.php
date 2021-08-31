@@ -28,7 +28,7 @@ $products =
         createProduct("Coffee", 200, 12),
         createProduct("Chocolate", 150, 7),
         createProduct("Apple juice", 250, 3),
-        createProduct("Hot Dog", 100, 1),
+        createProduct("Tea", 100, 1),
         createProduct("Ice cream", 200, 8),
         createProduct("Soda", 70, 3)
     ];
@@ -37,6 +37,7 @@ $shoppingCart = [];
 $total = 0;
 
 $remainingBalance = $customer->balance / 100;
+echo "Balance: {$remainingBalance}$" . PHP_EOL;
 
 while (true) {
     echo "Product List:" . PHP_EOL;
@@ -68,14 +69,14 @@ while (true) {
             $msg = "Invalid input" . PHP_EOL;
         }
     }
-
     echo $msg . PHP_EOL;
-    echo "BALANCE: {$remainingBalance}" . PHP_EOL;
-    echo "Current sum: {$total}$" . PHP_EOL;
+
+    echo "Current total: {$total}$" . PHP_EOL;
+    echo "BALANCE: {$remainingBalance}$" . PHP_EOL;
 
     $buyMore = readline("Do you want to buy more (yes/no)? ");
     if ($buyMore !== "yes") {
-        echo "You paid {$total} for your cart. Your remaining balance is {$remainingBalance}$" . PHP_EOL;
+        echo "You paid {$total}$ for your cart. Your remaining balance is {$remainingBalance}$" . PHP_EOL;
         exit;
     }
 }
