@@ -85,9 +85,9 @@ while (true)
     if ($playerWins === $pcWins)
     {
         echo "It's a tie! You both lose and egg!" . PHP_EOL;
-        var_dump($pcEgg->quantity);
-        $pcEgg->qauntity -= 1;
-        $playerEgg->qauntity -= 1;
+        $pcEgg->quantity -= 1;
+        $playerEgg->quantity -= 1;
+
         if ($pcEgg->quantity <= 0)
         {
             // delete from array
