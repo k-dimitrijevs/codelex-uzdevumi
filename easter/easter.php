@@ -165,7 +165,7 @@ while (true)
     echo "---------------------------------------" . PHP_EOL;
     $fightAgain = readline("Enter 'yes' if you wish to fight again: ");
     echo "---------------------------------------" . PHP_EOL;
-    if ($fightAgain !== 'yes')
+    if ($fightAgain !== 'yes' || empty($playerEggs) || empty($pcEggs))
     {
         echo "BYE!" . PHP_EOL;
         exit;
