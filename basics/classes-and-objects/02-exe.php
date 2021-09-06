@@ -48,16 +48,16 @@ class Point
     }
 }
 
-function swapPoints(object $p1, object $p2)
+function swapPoints(object $p1, object $p2): void
 {
-    $newP1 = new Point($p2->getX(), $p2->getY());
-    $newP2 = new Point($p1->getX(), $p1->getY());
+    $tempX = $p1->getX();
+    $tempY = $p1->getY();
 
-    $first = "({$newP1->getX()}, {$newP1->getY()})" . PHP_EOL;
-    $second = "({$newP2->getX()}, {$newP2->getY()})" . PHP_EOL;
+    $p1->setX($p2->getX());
+    $p1->setY($p2->getY());
 
-    return $first . $second;
-
+    $p2->setX($tempX);
+    $p2->setY($tempY);
 }
 
 $p1 = new Point(5, 2);
@@ -68,3 +68,7 @@ echo "({$p2->getX()}, {$p2->getY()})" . PHP_EOL;
 
 echo " SWAP " . PHP_EOL;
 echo swapPoints($p1, $p2);
+
+echo "({$p1->getX()}, {$p1->getY()})" . PHP_EOL;
+echo "({$p2->getX()}, {$p2->getY()})" . PHP_EOL;
+
