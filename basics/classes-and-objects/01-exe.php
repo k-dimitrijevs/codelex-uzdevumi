@@ -15,10 +15,13 @@ class Product
 
     public function printProduct(): string
     {
-        $msg = "{$this->name}, price {$this->price}, amount {$this->amount}" . PHP_EOL;
-        return $msg;
+        return "{$this->name}, price {$this->price}$, amount {$this->amount}" . PHP_EOL;
     }
 
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
 
     public function setPrice(float $price): void
     {
@@ -30,12 +33,16 @@ class Product
         $this->amount = $amount;
     }
 
+    public function applyDiscount(int $percent): void
+    {
+        $this->setPrice($this->getPrice() * (1 - ($percent / 100)));
+    }
 }
 
 $products = [
-    (new Product('Logitech mouse', 70, 14)),
-    (new Product('iPhone 5s', 999.99, 3)),
-    (new Product('Epson EB-UO5', 440.46, 1)),
+    new Product('Logitech mouse', 70.00, 14),
+    new Product('iPhone 5s', 999.99, 3),
+    new Product('Epson EB-UO5', 440.46, 1),
 
 ];
 
@@ -44,8 +51,15 @@ foreach ($products as $product) {
 }
 echo PHP_EOL;
 
-$products[0]->setPrice(110);
+$products[0]->setPrice(89.99);
+$products[0]->setAmount(3);
+
+$products[2]->setPrice(376.99);
 $products[2]->setAmount(23);
+
+foreach ($products as $product) {
+    $product->applyDiscount(30);
+}
 
 foreach ($products as $product) {
     echo $product->printProduct();
