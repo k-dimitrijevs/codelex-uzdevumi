@@ -82,7 +82,7 @@ if ($ready !== "yes")
     exit;
 }
 echo "-------------------------------------" . PHP_EOL;
-echo "LET'S GO! ";
+echo "Ka-Chow!” - Lightning McQueen";
 sleep(1);
 echo "-------------------------------------" . PHP_EOL;
 
