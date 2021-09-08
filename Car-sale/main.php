@@ -3,8 +3,8 @@
 require_once "Car.php";
 require_once "StoreItem.php";
 require_once "Store.php";
-
 require_once "Buyer.php";
+
 
 $store = new Store([
     new StoreItem(
@@ -24,30 +24,13 @@ $store = new Store([
     )
 ]);
 
-$buyer = new Buyer(30000);
-echo "Your balance {$buyer->getBalance()}$" . PHP_EOL;
+$store->showAvailableCars();
 
-foreach ($store->getItems() as $key => $item) {
-    echo "[{$key}] |  {$item->getCar()}$" . PHP_EOL;
-}
+echo "---------------------------------" . PHP_EOL;
 
+$customer = new Buyer("Jane", 30000);
+$customer->setCarPurchase($store);
 
-echo "------------------------------------" . PHP_EOL;
-$selectCar = (int) readline("Select which car you want to buy: ");
+echo "Your new balance is {$customer->getNewBalance()}$" . PHP_EOL;
 
-foreach ($store->getItems() as $key => $item) {
-    if ($selectCar === $key)
-    {
-        if ($buyer->getBalance() <= $item->getPrice())
-        {
-            $needMore = $item->getPrice() - $buyer->getBalance();
-            $msg = "You can't afford {$item->getCarName()}. You are {$needMore}$ short!";
-        } else {
-            $msg = "You bought {$item->getCarName()} for {$item->getPrice()}";
-        }
-        break;
-    } else {
-        $msg = "Invalid input!";
-    }
-}
-echo $msg . PHP_EOL;
+$store->setIncome($customer);

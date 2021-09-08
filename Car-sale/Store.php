@@ -2,22 +2,41 @@
 
 class Store
 {
-    private array $items;
+    private array $availableCars = [];
+    private int $income = 0;
 
-    public function __construct(array $items)
+    public function __construct(array $availableCars)
     {
-        foreach ($items as $item) {
-            $this->add($item);
+        foreach ($availableCars as $availableCar) {
+            $this->add($availableCar);
         }
     }
 
-    private function add(StoreItem $item): void
+    private function add(StoreItem $availableCar): void
     {
-        $this->items[] = $item;
+        $this->availableCars[] = $availableCar;
     }
 
-    public function getItems(): array
+    public function getAvailableCars(): array
     {
-        return $this->items;
+        return $this->availableCars;
+    }
+
+    public function showAvailableCars(): void
+    {
+        foreach ($this->getAvailableCars() as $key => $availableCar) {
+            $selector = $key;
+            echo "[{$selector}] | {$availableCar->getCarName()->getName()} | {$availableCar->getCarName()->getYear()} | {$availableCar->getPrice()}$" . PHP_EOL;
+        }
+    }
+
+    public function getSpecificCar($selector): StoreItem
+    {
+        return $this->availableCars[$selector];
+    }
+
+    public function setIncome(Buyer $customer): void
+    {
+        $this->income += $customer->getPurchaseCar()->getPrice();
     }
 }

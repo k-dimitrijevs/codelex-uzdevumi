@@ -2,15 +2,43 @@
 
 class Buyer
 {
+    private string $client;
     private int $balance;
+    private ?StoreItem $purchaseCar;
 
-    public function __construct(int $balance)
+    public function __construct(string $client, int $balance)
     {
+        $this->client = $client;
         $this->balance = $balance;
     }
 
-    public function getBalance(): int
+    public function setCarPurchase(Store $carList): void
     {
-        return $this->balance;
+        while (true)
+        {
+            $selector = (int) readline("Select which car you want to buy: ");
+            $nameOfTheCar = $carList->getSpecificCar($selector)->getCarName()->getName();
+            $priceOfTheCar = $carList->getSpecificCar($selector)->getPrice();
+
+            if ($priceOfTheCar >= $this->balance)
+            {
+                $needMore = $priceOfTheCar - $this->balance;
+                echo "You can't afford {$nameOfTheCar}! You are {$needMore}$ short" . PHP_EOL;
+            } else {
+                $this->purchaseCar = $carList->getSpecificCar($selector);
+                echo "Congratulations! You bought {$nameOfTheCar} for {$priceOfTheCar}$!" . PHP_EOL;
+                break;
+            }
+        }
+    }
+
+    public function getPurchaseCar(): ?StoreItem
+    {
+        return $this->purchaseCar;
+    }
+
+    public function getNewBalance(): int
+    {
+        return $this->balance -= $this->purchaseCar->getPrice();
     }
 }
