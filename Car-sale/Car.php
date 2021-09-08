@@ -11,11 +11,10 @@ class Car
         $this->year = $year;
     }
 
-    function getName(): string
+    public function getName(): string
     {
         return $this->name;
     }
-
     public function getYear(): int
     {
         return $this->year;

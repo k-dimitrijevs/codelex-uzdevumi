@@ -11,13 +11,13 @@ class StoreItem
         $this->price = $price;
     }
 
-    public function getCars(): string
-    {
-        return "CAR: {$this->car->getName()} | YEAR: {$this->car->getYear()} | PRICE: {$this->price}";
-    }
-
     public function getPrice(): int
     {
         return $this->price;
+    }
+
+    public function getCar(): string
+    {
+        return "{$this->car->getName()} | {$this->car->getYear()} | {$this->getPrice()}";
     }
 }

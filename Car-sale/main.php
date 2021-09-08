@@ -2,61 +2,31 @@
 
 require_once "Car.php";
 require_once "StoreItem.php";
-require_once "Store.php"; // NOT USED YET
+require_once "Store.php";
+
 require_once "Buyer.php";
 
-$cars = [
+$store = new Store([
     new StoreItem(
-        new Car('Audi A6', 2008), 7500
+        new Car('Audi', 2018), 28000
     ),
     new StoreItem(
-        new Car('BMW E61', 2009), 8000
+        new Car('BMW', 2020), 35000
     ),
     new StoreItem(
-        new Car('Honda Civic', 1994), 800
+        new Car('Honda', 2015), 14000
     ),
     new StoreItem(
-        new Car('Volkswagen Passat(B6)', 2005), 3400
+        new Car('Volkswagen', 2017), 16000
     ),
     new StoreItem(
-        new Car('Volvo 940', 1991), 2400
-    ),
-];
+        new Car('Volvo', 2021), 45000
+    )
+]);
 
-//$store = new Store($cars);
+$buyer = new Buyer(30000);
+echo "Your balance {$buyer->getBalance()}$" . PHP_EOL;
 
-$buyer = new Buyer(6000);
-echo "Your balance: {$buyer->getBalance()}$" . PHP_EOL;
-
-
-foreach ($cars as $key => $car) {
-    echo "[$key] {$car->getCars()}" . PHP_EOL;
+foreach ($store->getItems() as $key => $item) {
+    echo "[{$key}] |  {$item->getCar()}$" . PHP_EOL;
 }
-
-$selectCar = (int) readline("Select witch car you want to buy: ");
-
-foreach ($cars as $key => $car) {
-    if ($selectCar === $key)
-    {
-        if ($buyer->getBalance() >= $car->getPrice())
-        {
-            $msg = "You bought " . $car->getCars() . PHP_EOL;
-        } else {
-            $msg = "You can't afford " . $car->getCars() . PHP_EOL;
-        }
-        break;
-    } else {
-        $msg = "Invalid input!" . PHP_EOL;
-    }
-}
-echo $msg;
-
-
-//if ($buyer->getBalance() >= $car->getPrice())
-//{
-//    echo "[$key] You can afford: " . $car->getCars() . PHP_EOL;
-//}
-
-
-
-
