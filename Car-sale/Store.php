@@ -39,4 +39,8 @@ class Store
     {
         $this->income += $customer->getPurchaseCar()->getPrice();
     }
+    public function getIncome(): string
+    {
+        return "Store's income: {$this->income}$" . PHP_EOL;
+    }
 }
