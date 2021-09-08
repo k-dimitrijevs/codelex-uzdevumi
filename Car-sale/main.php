@@ -30,3 +30,24 @@ echo "Your balance {$buyer->getBalance()}$" . PHP_EOL;
 foreach ($store->getItems() as $key => $item) {
     echo "[{$key}] |  {$item->getCar()}$" . PHP_EOL;
 }
+
+
+echo "------------------------------------" . PHP_EOL;
+$selectCar = (int) readline("Select which car you want to buy: ");
+
+foreach ($store->getItems() as $key => $item) {
+    if ($selectCar === $key)
+    {
+        if ($buyer->getBalance() <= $item->getPrice())
+        {
+            $needMore = $item->getPrice() - $buyer->getBalance();
+            $msg = "You can't afford {$item->getCarName()}. You are {$needMore}$ short!";
+        } else {
+            $msg = "You bought {$item->getCarName()} for {$item->getPrice()}";
+        }
+        break;
+    } else {
+        $msg = "Invalid input!";
+    }
+}
+echo $msg . PHP_EOL;

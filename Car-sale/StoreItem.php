@@ -16,6 +16,11 @@ class StoreItem
         return $this->price;
     }
 
+    public function getCarName(): string
+    {
+        return $this->car->getName();
+    }
+
     public function getCar(): string
     {
         return "{$this->car->getName()} | {$this->car->getYear()} | {$this->getPrice()}";
