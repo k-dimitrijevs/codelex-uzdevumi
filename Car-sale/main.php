@@ -4,6 +4,7 @@ require_once "Car.php";
 require_once "StoreItem.php";
 require_once "Store.php";
 require_once "Buyer.php";
+require_once "StoreView.php";
 
 
 $store = new Store([
@@ -28,7 +29,7 @@ $store->showAvailableCars();
 
 echo "---------------------------------" . PHP_EOL;
 
-$customer = new Buyer("Jane", 30000);
-$customer->setCarPurchase($store);
+$customer = new Buyer(30000);
+$storeView = new StoreView($store, $customer);
 
-echo "Your new balance is {$customer->getNewBalance()}$" . PHP_EOL;
+$storeView->setCarPurchase($store);
