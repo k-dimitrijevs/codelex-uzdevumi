@@ -29,11 +29,6 @@ class Buyer
             }
     }
 
-    public function getPurchaseCar(): ?StoreItem
-    {
-        return $this->purchaseCar;
-    }
-
     public function getNewBalance(): int
     {
         return $this->balance -= $this->purchaseCar->getPrice();
