@@ -31,7 +31,4 @@ echo "---------------------------------" . PHP_EOL;
 $customer = new Buyer("Jane", 30000);
 $customer->setCarPurchase($store);
 
-$store->setIncome($customer);
-echo $store->getIncome();
-
 echo "Your new balance is {$customer->getNewBalance()}$" . PHP_EOL;

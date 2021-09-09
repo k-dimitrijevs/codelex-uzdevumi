@@ -34,13 +34,4 @@ class Store
     {
         return $this->availableCars[$selector];
     }
-
-    public function setIncome(Buyer $customer): void
-    {
-        $this->income += $customer->getPurchaseCar()->getPrice();
-    }
-    public function getIncome(): string
-    {
-        return "Store's income: {$this->income}$" . PHP_EOL;
-    }
 }
