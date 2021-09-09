@@ -3,7 +3,6 @@
 class Store
 {
     private array $availableCars = [];
-    private int $income = 0;
 
     public function __construct(array $availableCars)
     {
