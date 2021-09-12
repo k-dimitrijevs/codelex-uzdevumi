@@ -18,7 +18,7 @@ class Application
 
             switch ($command) {
                 case 0:
-                    echo "Bye!";
+                    echo "Bye!" . PHP_EOL;
                     die;
                 case 1:
                     $this->addMovies();
@@ -83,11 +83,17 @@ class Application
 
     private function listInventory(): void
     {
-        echo "-------------- AVAILABLE MOVIES --------------" . PHP_EOL;
-        foreach ($this->movieList->getMovieList() as $index => $movie) {
-            echo "[{$index}] | {$movie->getTitle()} | {$movie->getAvgRating()} | {$movie->stringCheckOut()}" . PHP_EOL;
+        if ($this->movieList === null)
+        {
+            echo "There are no movies in the store! " . PHP_EOL;
+            echo "----------------------------------" . PHP_EOL;
+        } else {
+            echo "-------------- AVAILABLE MOVIES --------------" . PHP_EOL;
+            foreach ($this->movieList->getMovieList() as $index => $movie) {
+                echo "[{$index}] | {$movie->getTitle()} | {$movie->getAvgRating()} | {$movie->stringCheckOut()}" . PHP_EOL;
+            }
+            echo "-------------- END OF LIST ----------------" . PHP_EOL;
         }
-        echo "-------------- END OF LIST ----------------" . PHP_EOL;
     }
 }
 
