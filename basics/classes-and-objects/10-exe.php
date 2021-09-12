@@ -2,6 +2,8 @@
 
 class Application
 {
+    private ?VideoStore $movieList = null;
+
     function run()
     {
         while (true) {
@@ -36,70 +38,78 @@ class Application
         }
     }
 
-    private function addMovies()
+    private function addMovies(): void
     {
-        //todo
+        $title = readline("Title: ");
+        $checkedOut = false;
+        $rating = (int) readline("Rating (1-10): ");
+
+        if ($this->movieList === null)
+        {
+            $this->movieList = new VideoStore([new Video($title, $checkedOut, [$rating])]);
+        } else {
+            $this->movieList->addMovie(new Video($title, $checkedOut, [$rating]));
+        }
     }
 
-    private function rentVideo()
+    private function rentVideo(): void
     {
-        //todo
+        $movieIndex = (int) readline("Movie index: ");
+        $movie = $this->movieList->getMovieList()[$movieIndex];
+
+        if ($movie->getCheckedOut() === false)
+        {
+            $movie->checkOutMovie();
+            echo "You rented {$movie->getTitle()}" . PHP_EOL;
+        } else {
+            echo "Movie unavailable" . PHP_EOL;
+        }
     }
 
-    private function returnVideo()
+    private function returnVideo(): void
     {
-        //todo
+        $movieIndex = (int) readline("Movie index: ");
+        $movie = $this->movieList->getMovieList()[$movieIndex];
+
+        if ($movie->getCheckedOut() === true)
+        {
+            $addRating = (int) readline("Give rating for {$movie->getTitle()}: ");
+            $movie->returnMovie();
+            $movie->giveRating($addRating);
+        } else {
+            echo "Movie was not rented for you to return it!" . PHP_EOL;
+        }
     }
 
-    private function listInventory()
+    private function listInventory(): void
     {
-        //todo
+        echo "-------------- AVAILABLE MOVIES --------------" . PHP_EOL;
+        foreach ($this->movieList->getMovieList() as $index => $movie) {
+            echo "[{$index}] | {$movie->getTitle()} | {$movie->getAvgRating()} | {$movie->stringCheckOut()}" . PHP_EOL;
+        }
+        echo "-------------- END OF LIST ----------------" . PHP_EOL;
     }
 }
 
 class VideoStore
 {
-    private array $allMovies = [];
+    private array $movieList;
 
-    public function __construct(Video $movie)
+    public function __construct(array $movieList)
     {
-        $this->allMovies[] = $movie;
-    }
-
-    public function getAllMovies(): array
-    {
-        return $this->allMovies;
-    }
-
-    public function addNewVideo(string $title): void
-    {
-        $this->allMovies[] = new Video($title, false);
-    }
-
-    public function checkOut(string $title): void
-    {
-        foreach ($this->allMovies as $movie)
-        {
-            if ($movie->getTitle() === $title && $movie->getCheckedOut() === true)
-            {
-                echo "This movie is already taken!" . PHP_EOL;
-            } elseif ($title === $movie->getTitle()) {
-                $movie->checkOutMovie();
-            }
+        foreach ($movieList as $movie) {
+            $this->addMovie($movie);
         }
     }
 
-    public function returnVideo(string $title): void
+    public function addMovie(Video $movie)
     {
-        foreach ($this->allMovies as $movie)
-        {
-            if ($movie->getTitle() === $title && $movie->getCheckedOut() === true)
-            {
-                echo "This movie is already in store!" . PHP_EOL;
-            } elseif ($title === $movie->getTitle()) {
-                $movie->returnVideo();
-            }
-        }
+        $this->movieList[] = $movie;
+    }
+
+    public function getMovieList(): array
+    {
+        return $this->movieList;
     }
 }
 
@@ -107,17 +117,23 @@ class Video
 {
     private string $title;
     private bool $checkedOut;
-    private array $avgRatings = [];
+    private array $ratings;
 
-    public function __construct(string $title, bool $checkedOut)
+    public function __construct(string $title, bool $checkedOut, array $ratings)
     {
         $this->title = $title;
         $this->checkedOut = $checkedOut;
+        $this->ratings = $ratings;
     }
 
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
     }
 
     public function getCheckedOut(): bool
@@ -130,23 +146,28 @@ class Video
         return $this->checkedOut = true;
     }
 
-    public function returnVideo(): bool
+    public function returnMovie(): bool
     {
         return $this->checkedOut = false;
     }
 
     public function giveRating(int $rating): void
     {
-        $this->avgRatings[] = $rating;
+        $this->ratings[] = $rating;
     }
 
     public function getAvgRating(): int
     {
-        if (!$this->avgRatings)
+        if (!$this->ratings)
         {
             return 0;
         }
-        return array_sum($this->avgRatings) / count($this->avgRatings);
+        return array_sum($this->ratings) / count($this->ratings);
+    }
+
+    public function stringCheckOut(): string
+    {
+        return ($this->checkedOut === false) ? "AVAILABLE" : "UNAVAILABLE";
     }
 }
 
