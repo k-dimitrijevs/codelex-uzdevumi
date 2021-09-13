@@ -2,13 +2,8 @@
 
 class Lauznis extends Weapon
 {
-    public function __construct(string $weaponName, int $price, string $licence)
-    {
-        parent::__construct($weaponName, $price, $licence);
-    }
-
     public function calculateTrajectory(): string
     {
-        return "Unlimited";
+        return number_format(($this->getPower() * 1000000000), 2);
     }
 }

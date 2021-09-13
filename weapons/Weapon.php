@@ -3,14 +3,16 @@
 class Weapon
 {
     private string $weaponName;
-    private int $price;
     private string $licence;
+    private string $power;
 
-    public function __construct(string $weaponName, int $price, string $licence)
+
+    public function __construct(string $weaponName, string $licence, string $power)
     {
         $this->weaponName = $weaponName;
-        $this->price = $price;
         $this->licence = $licence;
+        $this->power = $power;
+
     }
 
     public function getName(): string
@@ -18,9 +20,9 @@ class Weapon
         return $this->weaponName;
     }
 
-    public function getPrice(): float
+    public function getPower(): string
     {
-        return $this->price;
+        return $this->power;
     }
 
     public function getLicence(): string
@@ -30,6 +32,6 @@ class Weapon
 
     public function calculateTrajectory(): string
     {
-        return number_format(((1 * 1 + 1) / 1), 2);
+        return number_format((($this->power * 13 + 4) / 12), 2);
     }
 }
