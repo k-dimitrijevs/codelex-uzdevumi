@@ -6,21 +6,33 @@ class Table
 {
     private array $data = [];
 
-    public function __construct(array $data)
+//    public function __construct(array $data)
+//    {
+//        $this->data = $data;
+//    }
+
+    public function __construct()
     {
-        $this->data = $data;
+        if(($open = fopen("covid_19_valstu_saslimstibas_raditaji.csv", "r")) !== false)
+        {
+            while (($data = fgetcsv($open, 1000, ";")) !== false)
+            {
+                $this->data[] = $data;
+            }
+            fclose($open);
+        }
     }
 
     public function getData(array $dataEntries = []): array
     {
         foreach ($this->data as $entry) {
-            $dataEntries[] = explode(";", $entry);
+            $dataEntries[] = $entry;
         }
         return $dataEntries;
     }
 
     public function getHeader(): array
     {
-        return explode(";", array_shift($this->data),);
+        return array_shift($this->data);
     }
 }

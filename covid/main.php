@@ -3,7 +3,7 @@
 require_once "Table.php";
 require_once 'ConsoleTable.php';
 
-$covid = new Table(file("covid_19_valstu_saslimstibas_raditaji.csv"));
+$covid = new Table();
 $table = new ConsoleTable();
 
 $covidEntries = [];
