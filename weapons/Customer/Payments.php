@@ -4,7 +4,7 @@ class Payments
 {
     private array $payments = [];
 
-    public function __construct(CustomerCash $cash, CustomerCreditCard $creditCard, CustomerPayPal $paypal)
+    public function __construct(CustomerGooglePay $cash, CustomerCreditCard $creditCard, CustomerPayPal $paypal)
     {
         $this->payments = [$cash, $creditCard, $paypal];
     }

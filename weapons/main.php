@@ -18,7 +18,7 @@ require_once "Application.php";
 
 require_once "Customer/CustomerPayPal.php";
 require_once "Customer/CustomerCreditCard.php";
-require_once "Customer/CustomerCash.php";
+require_once "Customer/CustomerGooglePay.php";
 require_once "Customer/Payments.php";
 
 $store = new Application(new WeaponStore(
@@ -29,9 +29,9 @@ $store = new Application(new WeaponStore(
     ]
     ),
     new Payments(
-        new CustomerCash("Cash", 65),
-        new CustomerCreditCard("Credit Card", "1234 2345 9877 1020", 765, 12000),
-        new CustomerPayPal("PayPal", "varis@random.com", "varis123", 2000)
+        new CustomerGooglePay("Google Pay", 65),
+        new CustomerCreditCard("Credit Card", 12000),
+        new CustomerPayPal("PayPal", 2000)
     )
 );
 

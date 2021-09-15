@@ -1,17 +1,16 @@
 <?php
+require_once "paymentCredentials.php";
 
-class CustomerPayPal
+class CustomerPayPal extends paymentCredentials
 {
     private string $paymentName;
     private string $email;
     private string $password;
     private float $balance;
 
-    public function __construct(string $paymentName, string $email, string $password, float $balance)
+    public function __construct(string $paymentName, float $balance)
     {
         $this->paymentName = $paymentName;
-        $this->email = $email;
-        $this->password = $password;
         $this->balance = $balance;
     }
 
@@ -23,5 +22,11 @@ class CustomerPayPal
     public function getBalance(): float
     {
         return $this->balance;
+    }
+
+    public function enterCredentials(): void
+    {
+        $this->email = trim(readline('Enter Paypal email address : ')) . PHP_EOL;
+        $this->password = trim(readline('Enter Paypal password : ')) . PHP_EOL;;
     }
 }
