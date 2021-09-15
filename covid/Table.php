@@ -5,11 +5,7 @@ require_once "ConsoleTable.php";
 class Table
 {
     private array $data = [];
-
-//    public function __construct(array $data)
-//    {
-//        $this->data = $data;
-//    }
+    private ConsoleTable $table;
 
     public function __construct()
     {
@@ -34,5 +30,26 @@ class Table
     public function getHeader(): array
     {
         return array_shift($this->data);
+    }
+
+    public function displayData(ConsoleTable $table)
+    {
+        $covidEntries = [];
+
+        $headers = $this->getHeader();
+
+        foreach ($headers as $header)
+        {
+            $table->addHeader(mb_strimwidth($header, 0, 10));
+        }
+
+        foreach ($this->getData($covidEntries) as $column)
+        {
+            $table->addRow();
+            foreach ($column as $item) {
+                $table->addColumn(mb_strimwidth($item, 0, 10));
+            }
+        }
+        $table->display();
     }
 }
