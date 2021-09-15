@@ -16,12 +16,23 @@ require_once "WepAndPrice.php";
 require_once "WeaponStore.php";
 require_once "Application.php";
 
+require_once "Customer/CustomerPayPal.php";
+require_once "Customer/CustomerCreditCard.php";
+require_once "Customer/CustomerCash.php";
+require_once "Customer/Payments.php";
+
 $store = new Application(new WeaponStore(
     [
         new WepAndPrice(new Glock("Glock-18", "Pistol", "250"), 1500),
         new WepAndPrice(new AK47("AK-47", "Rifle", "1000"), 7500),
         new WepAndPrice(new Lauznis("Lauznis", "Rajons", "5000"), 10)
     ]
-));
+    ),
+    new Payments(
+        new CustomerCash("Cash", 65),
+        new CustomerCreditCard("Credit Card", "1234 2345 9877 1020", 765, 12000),
+        new CustomerPayPal("PayPal", "varis@random.com", "varis123", 2000)
+    )
+);
 
 $store->run();
